@@ -1,0 +1,10 @@
+!/bin/sh
+
+commit_message=$(cat "$1")
+
+if ! echo "$commit_message" | grep -q '[A-Z]'; then
+	echo "提交信息必须包含至少一个大写字母！"
+	exit 1
+fi
+
+exit 0
