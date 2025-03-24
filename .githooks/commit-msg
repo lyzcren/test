@@ -1,11 +1,20 @@
-!/bin/sh
+#!/bin/sh
 
-	echo "commit-msg"
+# 获取提交信息
 commit_message=$(cat "$1")
 
+# 检查是否包含大写字母
 if ! echo "$commit_message" | grep -q '[A-Z]'; then
-	echo "提交信息必须包含至少一个大写字母！"
-	exit 1
+  echo "提交信息必须包含至少一个大写字母！"
+  exit 1
 fi
 
+# 检查提交信息是否以句号结尾
+if ! echo "$commit_message" | grep -q '\.$'; then
+  echo "提交信息必须以句号结尾！"
+  exit 1
+fi
+
+# 如果通过检查，则允许提交
 exit 0
+
